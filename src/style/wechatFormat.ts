@@ -28,7 +28,7 @@ export const wechatFormat = `/* 全局属性
 
 /* 一级标题 */
 #nice h1 {
-  text-align: center;
+  text-align: left;
 }
 
 /* 一级标题内容 */
@@ -41,9 +41,10 @@ export const wechatFormat = `/* 全局属性
 
 /* 二级标题 */
 #nice h2 {
-  margin: 80px 10px 40px 10px;
-  text-align: center;
-  font-weight: normal;
+  margin: 60px 0px 20px 0px;
+  text-align: left;
+  font-weight: bold;
+  line-height: 1.5;
   color: #000000;
   font-size: 140%;
 }
@@ -58,8 +59,8 @@ export const wechatFormat = `/* 全局属性
 
 /* 三级标题 */
 #nice h3 {
-  margin: 40px 0px 20px 0px;
-  text-align: center;
+  margin: 20px 0px 10px 0px;
+  text-align: left;
   font-weight: bold;
   line-height: 1.5;
   color: #000000;
@@ -75,7 +76,7 @@ export const wechatFormat = `/* 全局属性
 }
 
 #nice h4 {
-  text-align: center;
+  text-align: left;
   line-height: 1.5;
   color: #000000;
   font-size: 110%;
