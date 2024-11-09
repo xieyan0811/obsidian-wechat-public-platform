@@ -240,6 +240,7 @@ export default class ApiManager {
 				if (nPath.startsWith("./")) {
 					nPath = nPath.slice(2);
 				}
+				nPath = this.regularPath(nPath);
 				const imgfile = this.app.vault.getAbstractFileByPath(nPath);
 				if (imgfile instanceof TFile) {
 					const data = await this.app.vault.readBinary(imgfile);
@@ -668,6 +669,15 @@ export default class ApiManager {
 		return parsedContent
 	}
 
+	regularPath(nPath: string): string {
+		if (nPath.startsWith("<") && nPath.endsWith(">")) {
+			nPath = nPath.slice(1, -1);
+		}
+		nPath = nPath.replace(/%20/g, ' ');
+		return nPath;
+	}
+
+
 	async uploadImageToWx(filePath:string, imgpath: string, fileName: string): Promise<string |undefined> {
         try {
 			const setings = get(settingsStore)
@@ -675,7 +685,7 @@ export default class ApiManager {
 			if (pass === false) {
 				return undefined
 			}
-
+			
 			let blobBytes: ArrayBuffer | null = null;
 			if (imgpath.startsWith("http")) {
 				const imgresp = await requestUrl(imgpath);
@@ -685,6 +695,7 @@ export default class ApiManager {
 				if (nPath.startsWith("./")) {
 					nPath = filePath + nPath.slice(1);
 				}
+				nPath = this.regularPath(nPath);
 				const imgfile = this.app.vault.getAbstractFileByPath(nPath);
 				// console.log(imgfile);
 				if (imgfile instanceof TFile) {
@@ -693,7 +704,7 @@ export default class ApiManager {
 				} else {
 					new Notice('Please input correct file relative path in obsidian');
 					return
-				}				
+				}
 			}
 
 			const boundary = chooseBoundary()
