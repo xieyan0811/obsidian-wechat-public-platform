@@ -22,8 +22,8 @@ export const wechatFormat = `/* 全局属性
 #nice p {
   line-height: 1.8;
   color: #000000;
-  font-size: 16px;
-  margin: 10px 0px;
+  font-size: 14px;
+  margin: 5px 0px;
 }
 
 /* 一级标题 */
@@ -46,7 +46,7 @@ export const wechatFormat = `/* 全局属性
   font-weight: bold;
   line-height: 1.5;
   color: #000000;
-  font-size: 140%;
+  font-size: 130%;
 }
 
 /* 二级标题内容 */
