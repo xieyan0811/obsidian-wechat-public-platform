@@ -29,10 +29,12 @@ export const wechatFormat = `/* 全局属性
 /* 一级标题 */
 #nice h1 {
   text-align: left;
+  font-size: 24px;
 }
 
 /* 一级标题内容 */
 #nice h1 .content {
+  font-size: 24px;
 }
 
 /* 一级标题修饰 请参考有实例的主题 */
@@ -45,8 +47,7 @@ export const wechatFormat = `/* 全局属性
   text-align: left;
   font-weight: bold;
   line-height: 1.5;
-  color: #000000;
-  font-size: 130%;
+  font-size: 22px;
 }
 
 /* 二级标题内容 */
@@ -63,8 +64,7 @@ export const wechatFormat = `/* 全局属性
   text-align: left;
   font-weight: bold;
   line-height: 1.5;
-  color: #000000;
-  font-size: 120%;
+  font-size: 20px;
 }
 
 /* 三级标题内容 */
@@ -77,9 +77,8 @@ export const wechatFormat = `/* 全局属性
 
 #nice h4 {
   text-align: left;
-  line-height: 1.5;
-  color: #000000;
-  font-size: 110%;
+  line-height: 1.3;
+  font-size: 18px;
 }
 
 /* 四级标题内容 */
@@ -94,17 +93,20 @@ export const wechatFormat = `/* 全局属性
  * list-style-type: square|circle|disc;
  */
 #nice ul {
+  font-size: 14px;
 }
 
 /* 有序列表整体样式
  * list-style-type: upper-roman|lower-greek|lower-alpha;
  */
 #nice ol {
+  font-size: 14px;
 }
 
 /* 列表内容，不要设置li
  */
 #nice li section {
+  font-size: 14px;
 }
 
 /* 引用
@@ -123,7 +125,7 @@ export const wechatFormat = `/* 全局属性
 #nice blockquote p {
   color: #000000;
   line-height: 1.5;
-  font-size: 16px;
+  font-size: 14px;
   margin: 10px;
   padding: 0px;
 }
@@ -138,7 +140,7 @@ export const wechatFormat = `/* 全局属性
 
 /* 加粗 */
 #nice strong {
-  color: #ff3502;
+  color: #000000;
   line-height: 1.5;
   font-size: 16px;
 }
