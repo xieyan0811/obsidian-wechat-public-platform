@@ -7,6 +7,12 @@ import { WeChatUploadMaterialModal, WeChatDownloadMaterialModal, OpenFileModal, 
 import { CoverInfo } from 'src/models';
 import { splitPathAndFile } from 'utils/path';
 
+function getArticleTitle(file: TFile, frontmatterTitle: unknown): string {
+	return typeof frontmatterTitle === 'string' && frontmatterTitle.trim()
+		? frontmatterTitle.trim()
+		: file.basename;
+}
+
 export default class WeChatPublic extends Plugin {
 	frontManager: FrontMatterManager;
 	apiManager: ApiManager;
@@ -25,6 +31,7 @@ export default class WeChatPublic extends Plugin {
 				}
 				const text = await this.frontManager.removeFrontMatter(file)
 				const cache = this.app.metadataCache.getFileCache(file);
+				const title = getArticleTitle(file, cache?.frontmatter?.title);
 				if (cache?.frontmatter === undefined || cache?.frontmatter!["thumb_media_id"] === undefined && 
 						cache?.frontmatter!["banner"] === undefined &&
 							cache?.frontmatter!["banner_path"] === undefined) {
@@ -33,11 +40,11 @@ export default class WeChatPublic extends Plugin {
 						return
 					}
 					new CoverIDSuggestModal(this.app, covers, async (cover: CoverInfo) => {
-						await this.apiManager.newDraftToWechat(filePath, file.basename, text, cache?.frontmatter!, cover.mediaID);
+						await this.apiManager.newDraftToWechat(filePath, title, text, cache?.frontmatter!, cover.mediaID);
 					}).open();
 					return
 				} else {
-					await this.apiManager.newDraftToWechat(filePath, file.basename, text, cache?.frontmatter!)
+					await this.apiManager.newDraftToWechat(filePath, title, text, cache?.frontmatter!)
 				}
 			}).open();
 		});
@@ -49,15 +56,15 @@ export default class WeChatPublic extends Plugin {
 			name: 'Send to all wechat subscribers【 normal account one shot a day 】',
 			editorCallback: async (editor: Editor, view: MarkdownView) => {
 				const file = view.file
-				const basename = file?.basename
 				let filePath = "";
 				if (file?.path !== undefined) {
 					filePath = splitPathAndFile(file?.path)[0];
 				}
 				const text = await this.frontManager.removeFrontMatter(file!)
 				const cache = this.app.metadataCache.getFileCache(file!);
+				const title = getArticleTitle(file!, cache?.frontmatter?.title);
 				
-				const media_id = await this.apiManager.newDraftToWechat(filePath, basename!, text, cache?.frontmatter!)
+				const media_id = await this.apiManager.newDraftToWechat(filePath, title, text, cache?.frontmatter!)
 				await this.apiManager.sendAll(media_id!)
 			}
 		});
@@ -67,7 +74,6 @@ export default class WeChatPublic extends Plugin {
 			name: 'Release article to WeChat platform',
 			editorCallback: async (editor: Editor, view: MarkdownView) => {
 				const file = view.file
-				const basename = file?.basename
 				let filePath = "";
 				if (file?.path !== undefined) {
 					filePath = splitPathAndFile(file?.path)[0];
@@ -75,7 +81,8 @@ export default class WeChatPublic extends Plugin {
 				const text = await this.frontManager.removeFrontMatter(file!)
 
 				const cache = this.app.metadataCache.getFileCache(file!);
-				const media_id = await this.apiManager.newDraftToWechat(filePath, basename!, text, cache?.frontmatter!)
+				const title = getArticleTitle(file!, cache?.frontmatter?.title);
+				const media_id = await this.apiManager.newDraftToWechat(filePath, title, text, cache?.frontmatter!)
 				await this.apiManager.freepublish(media_id!)
 			}
 		});
@@ -89,10 +96,10 @@ export default class WeChatPublic extends Plugin {
 				if (file?.path !== undefined) {
 					filePath = splitPathAndFile(file?.path)[0];
 				}
-				const basename = file?.basename
 				const text = await this.frontManager.removeFrontMatter(file!)
 				// console.log(text);
 				let cache = this.app.metadataCache.getFileCache(file!);
+				const title = getArticleTitle(file!, cache?.frontmatter?.title);
 				if (cache?.frontmatter === undefined || cache?.frontmatter!["thumb_media_id"] === undefined && 
 						cache?.frontmatter!["banner"] === undefined &&
 							cache?.frontmatter!["banner_path"] === undefined) {
@@ -101,11 +108,11 @@ export default class WeChatPublic extends Plugin {
 						return
 					}
 					new CoverIDSuggestModal(this.app, covers, async (cover: CoverInfo) => {
-						await this.apiManager.newDraftToWechat(filePath, basename!, text, cache?.frontmatter!, cover.mediaID);
+						await this.apiManager.newDraftToWechat(filePath, title, text, cache?.frontmatter!, cover.mediaID);
 					}).open();
 					return
 				} else {
-					await this.apiManager.newDraftToWechat(filePath, basename!, text, cache?.frontmatter!)
+					await this.apiManager.newDraftToWechat(filePath, title, text, cache?.frontmatter!)
 				}
 			}
 		});
@@ -146,14 +153,14 @@ export default class WeChatPublic extends Plugin {
 			editorCallback: async (editor: Editor, view: MarkdownView) => {
 				try {
 					const file = view.file
-					const basename = file?.basename
 					let filePath = "";
 					if (file?.path !== undefined) {
 						filePath = splitPathAndFile(file?.path)[0];
 					}
 					const text = await this.frontManager.removeFrontMatter(file!)
 					let cache = this.app.metadataCache.getFileCache(file!);
-					await this.apiManager.publishToBjh(filePath, basename!, text, cache?.frontmatter!)
+					const title = getArticleTitle(file!, cache?.frontmatter?.title);
+					await this.apiManager.publishToBjh(filePath, title, text, cache?.frontmatter!)
 					return
 				} catch (error) {
 					console.error(error);

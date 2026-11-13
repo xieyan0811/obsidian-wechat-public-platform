@@ -112,7 +112,7 @@
 
 /* 行内代码 */
 #nice p code,
-li code {
+#nice li code {
   color: #40697a;
   line-height: 1.5;
   padding: 3px 5px;

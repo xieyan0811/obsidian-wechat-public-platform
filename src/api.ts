@@ -14,6 +14,16 @@ import { chooseBoundary, isWebp, jsonToUrlEncoded } from 'utils/cookiesUtil';
 import { markedParse, ParseOptions } from './markdown/parse';
 import { calloutStyle } from './style/callouts';
 
+function getArticleDigest(frontmatter: FrontMatterCache): string {
+	const description = frontmatter["description"];
+	if (typeof description === "string" && description.trim()) {
+		return description.trim();
+	}
+
+	const digest = frontmatter["digest"];
+	return typeof digest === "string" ? digest : "";
+}
+
 export default class ApiManager {
 	app: App;
 	manifest: PluginManifest;
@@ -350,7 +360,7 @@ export default class ApiManager {
 					return
 				}
 				author = frontmatter["author"];
-				digest = frontmatter["digest"];
+				digest = getArticleDigest(frontmatter);
 				content_source_url = frontmatter["source_url"];
 				need_open_comment = frontmatter["open_comment"];
 			} else {
@@ -898,7 +908,7 @@ export default class ApiManager {
 					return
 				}
 				author = frontmatter["author"];
-				digest = frontmatter["digest"];
+				digest = getArticleDigest(frontmatter);
 			} else {
 				new Notice('Please set banner of article, banner, banner_path in file frontManager');
 				return

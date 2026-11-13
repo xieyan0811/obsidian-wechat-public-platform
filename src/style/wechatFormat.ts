@@ -180,7 +180,7 @@ export const wechatFormat = `/* 全局属性
  *  background: #f8f5ec;
 */
 #nice p code, #nice li code {
-  color: #ff3502;
+  color: #40697a;
   line-height: 1.5;
   font-size: 14px;
   padding: 3px 5px;

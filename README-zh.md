@@ -66,6 +66,7 @@ banner: "https://images.unsplash.com/photo-1620266757065-5814239881fd?ixlib=rb-4
 banner_path: "twitter.jpg"  // image file path
 open_comment: 0
 source_url: ""  // ref article url source
+description: ""  // 文章摘要；优先于 digest
 digest: ""
 ```
 
