@@ -1,0 +1,148 @@
+/* 自定义样式 - 青灰蓝主题 */
+
+#nice .layout {}
+
+#nice p {
+  color: #3e3e3e;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  text-indent: 0px;
+  word-spacing: 0px;
+}
+
+/* 一级标题 */
+#nice h1 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 1em auto 1em;
+  background-color: #40697a;
+  padding: 1em 1em;
+  border-radius: 8px;
+  display: table;
+  text-align: left;
+}
+
+/* 二级标题 */
+#nice h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 2em auto 1em;
+  color: #40697a;
+  background-color: rgba(64, 105, 122, 0.08);
+  padding: 0.5em 1em;
+  text-align: left;
+  border-left: 3px solid #5a7d92;
+}
+
+/* 三级标题 */
+#nice h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 2em 8px 1em 0px;
+  color: #40697a;
+  text-align: left;
+  padding-left: 10px;
+  border-left: 3px solid #5a7d92;
+}
+
+/* 四级标题 */
+#nice h4 {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 1.5em 8px 1em;
+  orphans: 2;
+  text-align: left;
+  color: #40697a;
+  padding-left: 10px;
+  border-left: 2px solid #5a7d92;
+}
+
+/* 五级标题 */
+#nice h5 {
+  margin: 0.6em auto;
+  font-size: 14px;
+  padding-left: 10px;
+  border-left: 1px dashed #5a7d92;
+  color: #40697a;
+}
+
+/* 列表内容 */
+#nice li {
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+#nice li strong {
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+/* 引用 */
+#nice blockquote {
+  border-left: 2px solid #888;
+  border-right: 2px solid #888;
+  padding-left: 1em;
+  font-size: 14px;
+  color: #40697a;
+  background: #f6fafb;
+}
+
+/* 链接 */
+#nice a {
+  font-size: 14px;
+  color: #40697a;
+  border-bottom: 1px solid #5a7d92;
+}
+
+/* 加粗 */
+#nice strong {
+  color: #40697a;
+  font-size: 14px;
+}
+
+/* 行内代码 */
+#nice p code,
+li code {
+  color: #40697a;
+  line-height: 1.5;
+  font-size: 14px;
+  padding: 3px 5px;
+  border-radius: 2px;
+}
+
+/* 分隔线 */
+#nice hr {
+  margin: 20px 0;
+}
+
+/* 表格 */
+#nice table tr th {
+  font-size: 14px;
+  border: 1px solid #5a7d92;
+  background-color: #5a7d92;
+  color: #f8f8f8;
+  border-bottom: 0;
+}
+
+#nice table tr td {
+  border: 1px solid #5a7d92;
+  font-size: 14px;
+}
+
+#nice table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* 脚注文字 */
+#nice .footnote-word {
+  color: #5a7d92;
+}
+
+/* 脚注上标 */
+#nice .footnote-ref {
+  color: #5a7d92;
+}

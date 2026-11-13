@@ -365,7 +365,6 @@ export default class ApiManager {
 			const MdImagedContent = await this.handleMDImage(filePath, content, 'wx')
 			// todo: move to other please
 			const parseOptions:ParseOptions = {
-				lineNumber: true,
 				linkStyle: 'footnote'
 			};
 
@@ -375,7 +374,7 @@ export default class ApiManager {
 			// const htmlText1 = this.formatCodeHTML(htmlText)
 			// console.log(htmlText1 + "\n");
 			const htmlText2 = this.solveHTML(`<section id="nice">` + htmlText +`</section>`)
-			// console.log(htmlText2);
+			console.log(htmlText2); // for test
 			// return
 
 			const url = `${this.baseWxUrl}/draft/add?access_token=${setings.accessToken}`;

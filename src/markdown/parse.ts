@@ -7,7 +7,6 @@ import { removeWeChatPreCode } from "./code";
 
 
 export interface ParseOptions {
-    lineNumber: boolean;
 	linkStyle: 'footnote' | 'inline';
 };
 
@@ -15,7 +14,6 @@ const BlockMarkRegex = /^\^[0-9A-Za-z-]+$/;
 let AllLinks:string[] = [];
 
 const parseOptions:ParseOptions = {
-    lineNumber: true,
 	linkStyle: 'footnote'
 };
 const markedOptiones = {
@@ -62,25 +60,22 @@ function EmbedBlockMark() {
 }
 
 export async function markedParse(content:string, op:ParseOptions, extensions:any[])  {
-	parseOptions.lineNumber = op.lineNumber;
 	parseOptions.linkStyle = op.linkStyle;
 
 	const m = new Marked(
 	    markedHighlight({
 	    highlight(code, lang, info) {
-            const text = code.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+			const text = code.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
             const lines = text.split("\n");
+			if (text.endsWith("\n")) {
+				lines.pop();
+			}
             const codeLines = [];
-            const numbers = [];
-            for (let i = 0; i < lines.length - 1; i++) {
+			for (let i = 0; i < lines.length; i++) {
                 codeLines.push('<code><span class="code-snippet_outer">' + (lines[i] || "<br>") + "</span></code>");
-                numbers.push("<li></li>");
             }
             return (
                 '<section class="code-snippet__fix code-snippet__js">' +
-                '<ul class="code-snippet__line-index code-snippet__js">' +
-                numbers.join("") +
-                "</ul>" +
                 '<pre class="code-snippet__js" data-lang="' +
                 lang +
                 '">' +
